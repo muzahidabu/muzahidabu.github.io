@@ -1,7 +1,7 @@
 ---
 title: "Yeast and bacteria co-culture-based lipid production through bioremediation of palm oil mill effluent: a statistical optimization"
 collection: publications
-permalink: /publication/SpringerLink
+permalink: /publications/SpringerLink
 date:  15 January 2021
 venue: 'Biomass Conversion and Biorefinery'
 paperurl: 'files/pdf/research/Yeast.pdf'
