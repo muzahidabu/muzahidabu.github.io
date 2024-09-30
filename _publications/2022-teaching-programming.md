@@ -2,7 +2,7 @@
 title: "Teaching Programming Skills in Methods Courses is an Opportunity, not a Burden"
 collection: publications
 permalink: /publication/2022-teaching-programming
-date: 2022-01-00
+date: 
 venue: 'PS: Political Science & Politics'
 paperurl: '/files/pdf/teaching/Teaching Programming.pdf'
 link: 'https://doi.org/10.1017/S1049096521001153'
