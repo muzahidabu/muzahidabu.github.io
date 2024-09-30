@@ -1,7 +1,7 @@
 ---
 title: "Multiple vehicle cooperation and collision avoidance in automated vehicles: survey and an AI-enabled conceptual framework"
 collection: publications
-permalink: /publication/2023-multiple-vehicle-cooperation
+permalink: /publication/ScientificReports
 date: 2023-01-12
 venue: 'Scientific Reports'
 paperurl: '/files/pdf/research/s41598-022-27026-9.pdf'
