@@ -1,7 +1,7 @@
 ---
 title: "Multiple vehicle cooperation and collision avoidance in automated vehicles: survey and an AI-enabled conceptual framework"
 collection: publications
-permalink: /publication/2019-bayespostest
+permalink: /publication/ScientificReports
 date: 2019-10-01
 venue: 'Scientific Reports'
 paperurl: 'https://www.nature.com/articles/s41598-022-27026-9'
