@@ -3,934 +3,1602 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abu Jafar Md Muzahid — Autonomous Systems Researcher</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+<title>Abu Jafar Md Muzahid | PhD Candidate · Autonomous Systems</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=IBM+Plex+Mono:wght@300;400;500&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  /* ── TOKENS ──────────────────────────────────── */
   :root {
-    --orange:       #FF8200;
-    --orange-dark:  #D96D00;
-    --orange-light: #FFF0E0;
-    --smokey:       #58595B;
-    --smokey-dark:  #2C2D2E;
-    --smokey-light: #F4F4F4;
-    --white:        #FFFFFF;
-    --text-primary: #1A1A1A;
-    --text-secondary: #58595B;
-    --text-muted:   #888;
-    --border:       #E5E5E5;
-    --card-shadow:  0 2px 16px rgba(0,0,0,0.07);
-    --radius:       12px;
-    --radius-sm:    6px;
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --border: #ddd9d0;
+    --border-light: #eae7e0;
+    --ink: #1a1814;
+    --ink-mid: #4a4540;
+    --ink-light: #8a8078;
+    --accent: #e07000;       /* UTK Orange — slightly darkened for readability on light bg */
+    --accent-bright: #FF8200; /* pure UTK Orange for badges/pills */
+    --accent-light: #fff3e0;
+    --accent-warm: #8a3a1a;
+    --tag-bg: #f0ede8;
+    --rule: #c8c0b4;
   }
 
-  /* ── RESET ───────────────────────────────────── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
-  body {
-    font-family: 'Inter', sans-serif;
-    color: var(--text-primary);
-    background: var(--white);
-    line-height: 1.6;
-    font-size: 15px;
-  }
-  a { color: var(--orange); text-decoration: none; }
-  a:hover { text-decoration: underline; }
-  img { max-width: 100%; }
 
-  /* ── NAV ─────────────────────────────────────── */
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  .site-wrapper {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ── NAV ────────────────────────────────── */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(28,28,28,0.96);
-    backdrop-filter: blur(12px);
-    border-bottom: 2px solid var(--orange);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 40px; height: 60px;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    background: rgba(247,245,240,0.96);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
   }
-  .nav-brand {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px; font-weight: 700;
-    color: var(--white);
-    letter-spacing: 0.01em;
+
+  .nav-inner {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
   }
-  .nav-brand span { color: var(--orange); }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
+
+  .nav-name {
+    font-family: 'Lora', serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 26px;
+    list-style: none;
+  }
+
   .nav-links a {
-    color: rgba(255,255,255,0.75);
-    font-size: 13px; font-weight: 500;
-    letter-spacing: 0.04em; text-transform: uppercase;
+    font-size: 11px;
+    font-family: 'IBM Plex Mono', monospace;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    text-decoration: none;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--orange); text-decoration: none; }
 
-  /* ── HERO ────────────────────────────────────── */
-  #hero {
-    min-height: 100vh;
-    background: var(--smokey-dark);
-    display: flex; align-items: center;
-    padding: 80px 40px 60px;
-    position: relative; overflow: hidden;
-  }
-  /* Road grid — signature element */
-  #hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background-image:
-      linear-gradient(rgba(255,130,0,0.06) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,130,0,0.06) 1px, transparent 1px);
-    background-size: 60px 60px;
-    animation: gridScroll 20s linear infinite;
-  }
-  #hero::after {
-    content: '';
-    position: absolute; bottom: 0; left: 0; right: 0;
-    height: 180px;
-    background: linear-gradient(to bottom, transparent, var(--smokey-dark));
-  }
-  @keyframes gridScroll {
-    0%   { background-position: 0 0; }
-    100% { background-position: 60px 60px; }
-  }
-  .hero-inner {
-    max-width: 1100px; margin: 0 auto;
-    display: flex; align-items: center; gap: 64px;
-    position: relative; z-index: 2; width: 100%;
-  }
-  .hero-photo {
-    flex-shrink: 0;
-    width: 200px; height: 200px;
-    border-radius: 50%;
-    border: 4px solid var(--orange);
-    background: var(--smokey);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 60px; color: rgba(255,255,255,0.3);
-    overflow: hidden; position: relative;
-    box-shadow: 0 0 0 8px rgba(255,130,0,0.15);
-  }
-  .hero-photo img {
-    width: 100%; height: 100%; object-fit: cover;
-    display: none; /* shows when src is set */
-  }
-  .photo-placeholder {
-    display: flex; flex-direction: column; align-items: center; gap: 8px;
-    color: rgba(255,255,255,0.35); font-size: 12px; text-align: center; padding: 12px;
-  }
-  .photo-placeholder svg { opacity: 0.4; }
-  .hero-text { flex: 1; }
-  .hero-eyebrow {
-    font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--orange);
-    margin-bottom: 14px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .hero-eyebrow::after {
-    content: ''; display: block; height: 1px; width: 40px;
-    background: var(--orange); opacity: 0.5;
-  }
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 900; line-height: 1.1;
-    color: var(--white); margin-bottom: 18px;
-    letter-spacing: -0.02em;
-  }
-  h1 em { color: var(--orange); font-style: normal; }
-  .hero-sub {
-    font-size: 16px; color: rgba(255,255,255,0.65);
-    max-width: 520px; margin-bottom: 28px; line-height: 1.7;
-  }
-  /* Stat pills */
-  .stat-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
-  .stat-pill {
-    background: rgba(255,130,0,0.12);
-    border: 1px solid rgba(255,130,0,0.3);
-    border-radius: 40px; padding: 6px 16px;
-    display: flex; align-items: center; gap: 8px;
-  }
-  .stat-num {
-    font-size: 18px; font-weight: 600; color: var(--orange);
-    font-family: 'Playfair Display', serif;
-  }
-  .stat-label { font-size: 12px; color: rgba(255,255,255,0.55); }
-  .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; }
-  .btn-primary {
-    background: var(--orange); color: var(--white);
-    border: none; border-radius: 40px;
-    padding: 12px 28px; font-size: 14px; font-weight: 600;
-    cursor: pointer; transition: background 0.2s, transform 0.1s;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .btn-primary:hover { background: var(--orange-dark); transform: translateY(-1px); text-decoration: none; }
-  .btn-outline {
-    background: transparent; color: rgba(255,255,255,0.8);
-    border: 1px solid rgba(255,255,255,0.25); border-radius: 40px;
-    padding: 12px 28px; font-size: 14px; font-weight: 500;
-    cursor: pointer; transition: all 0.2s;
-    display: inline-flex; align-items: center; gap: 8px;
-  }
-  .btn-outline:hover { border-color: var(--orange); color: var(--orange); text-decoration: none; }
+  .nav-links a:hover,
+  .nav-links a.active { color: var(--accent); }
 
-  /* ── SECTIONS ────────────────────────────────── */
-  section { padding: 80px 40px; }
-  .container { max-width: 1100px; margin: 0 auto; }
-  .section-label {
-    font-size: 11px; font-weight: 600; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--orange);
-    margin-bottom: 8px;
+  /* ── ABOUT ──────────────────────────────── */
+  #about {
+    padding: 80px 0 72px;
+    border-bottom: 1px solid var(--border);
   }
-  h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(26px, 4vw, 38px); font-weight: 700;
-    color: var(--text-primary); margin-bottom: 40px;
-    line-height: 1.2;
-  }
-  h2 span { color: var(--orange); }
 
-  /* ── ABOUT ───────────────────────────────────── */
-  #about { background: var(--white); }
   .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    gap: 72px;
     align-items: start;
   }
-  .about-text p { color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; }
-  .about-meta { display: flex; flex-direction: column; gap: 14px; }
-  .meta-item {
-    display: flex; gap: 14px; align-items: flex-start;
-    padding: 14px 16px;
-    border: 1px solid var(--border); border-radius: var(--radius-sm);
-    transition: border-color 0.2s;
-  }
-  .meta-item:hover { border-color: var(--orange); }
-  .meta-icon {
-    width: 36px; height: 36px; border-radius: 8px;
-    background: var(--orange-light); color: var(--orange);
-    display: flex; align-items: center; justify-content: center;
-    flex-shrink: 0; font-size: 16px;
-  }
-  .meta-key { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px; }
-  .meta-val { font-size: 14px; font-weight: 500; color: var(--text-primary); }
 
-  /* ── RESEARCH ────────────────────────────────── */
-  #research { background: var(--smokey-light); }
-  .research-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .research-card {
-    background: var(--white); border-radius: var(--radius);
-    padding: 24px; box-shadow: var(--card-shadow);
-    border-top: 3px solid transparent;
-    transition: border-color 0.2s, transform 0.2s;
+  .about-eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.1s forwards;
   }
-  .research-card:hover { border-top-color: var(--orange); transform: translateY(-3px); }
-  .rc-icon {
-    width: 44px; height: 44px; border-radius: 10px;
-    background: var(--orange-light); color: var(--orange);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 20px; margin-bottom: 14px;
+
+  .about-name {
+    font-family: 'Lora', serif;
+    font-size: clamp(30px, 3.8vw, 48px);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--ink);
+    margin-bottom: 8px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.2s forwards;
   }
-  .research-card h3 {
-    font-size: 15px; font-weight: 600; color: var(--text-primary);
-    margin-bottom: 10px; line-height: 1.4;
+
+  .about-title {
+    font-family: 'Lora', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--ink-light);
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.3s forwards;
   }
-  .research-card p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
-  .rc-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
-  .rc-tag {
-    font-size: 11px; padding: 3px 10px; border-radius: 20px;
-    background: var(--smokey-light); color: var(--smokey);
+
+  .about-affil {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 26px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.35s forwards;
+  }
+
+  .affil-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.45;
+  }
+
+  .affil-dot {
+    flex-shrink: 0;
+    color: var(--accent);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 12px;
+    margin-top: 1px;
+  }
+
+  .about-bio {
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: var(--ink-mid);
+    margin-bottom: 12px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s forwards;
+  }
+
+  .result-callout {
+    border-left: 2px solid var(--accent-bright);
+    padding: 10px 16px;
+    margin: 16px 0 20px;
+    background: var(--accent-light);
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.43s forwards;
+  }
+
+  .result-callout strong { color: var(--accent); }
+
+  .about-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s forwards;
+  }
+
+  .about-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 16px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.9px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid var(--border);
+    color: var(--ink-mid);
+    background: var(--surface);
+    transition: all 0.2s;
+  }
+
+  .about-link:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-light);
+    text-decoration: none;
+  }
+
+  .about-link.primary {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+  }
+
+  .about-link.primary:hover {
+    background: #c06000;
+    border-color: #c06000;
+    color: #fff;
+  }
+
+  /* Profile card */
+  .profile-card {
+    opacity: 0;
+    animation: fadeIn 0.8s 0.4s forwards;
+  }
+
+  .profile-photo {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    background: var(--tag-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--ink-light);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+  }
+
+  .profile-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .profile-meta {
+    border: 1px solid var(--border);
+    border-top: none;
+    background: var(--surface);
+  }
+
+  .meta-row {
+    display: flex;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--border-light);
+    gap: 12px;
+    align-items: flex-start;
+  }
+
+  .meta-row:last-child { border-bottom: none; }
+
+  .meta-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    flex-shrink: 0;
+    width: 64px;
+    padding-top: 2px;
+  }
+
+  .meta-value {
+    font-size: 12.5px;
+    color: var(--ink-mid);
+    line-height: 1.5;
+  }
+
+  .meta-value a { color: var(--accent); text-decoration: none; }
+  .meta-value a:hover { text-decoration: underline; }
+
+  /* ── SECTION COMMON ─────────────────────── */
+  .section {
+    padding: 68px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    margin-bottom: 5px;
+  }
+
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 34px;
+    padding-bottom: 13px;
+    border-bottom: 2px solid var(--ink);
+  }
+
+  /* ── RESEARCH INTERESTS ─────────────────── */
+  .interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1px;
+    background: var(--border);
     border: 1px solid var(--border);
   }
 
-  /* ── PUBLICATIONS ────────────────────────────── */
-  #publications { background: var(--white); }
-  .pub-stats { display: flex; gap: 24px; margin-bottom: 40px; flex-wrap: wrap; }
-  .pub-stat {
-    text-align: center; padding: 20px 28px;
-    border: 1px solid var(--border); border-radius: var(--radius);
-    min-width: 120px;
+  .interest-card {
+    background: var(--surface);
+    padding: 24px 20px;
+    transition: background 0.2s;
   }
+
+  .interest-card:hover { background: var(--accent-light); }
+
+  .interest-icon { font-size: 20px; margin-bottom: 10px; }
+
+  .interest-name {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    margin-bottom: 6px;
+  }
+
+  .interest-desc {
+    font-size: 12px;
+    color: var(--ink-light);
+    line-height: 1.65;
+  }
+
+  /* ── PUBLICATIONS ───────────────────────── */
+  .pub-stats-row {
+    display: flex;
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    margin-bottom: 28px;
+  }
+
+  .pub-stat-box {
+    background: var(--surface);
+    padding: 18px 24px;
+    flex: 1;
+    text-align: center;
+  }
+
+  .pub-stat-box:hover { background: var(--accent-light); }
+
   .pub-stat-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px; font-weight: 700; color: var(--orange);
+    font-family: 'Lora', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--accent);
     line-height: 1;
+    margin-bottom: 4px;
   }
-  .pub-stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-  .pub-list { display: flex; flex-direction: column; gap: 14px; }
+
+  .pub-stat-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+  }
+
+  .pub-filter {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+
+  .filter-btn {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--ink-light);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  .filter-btn.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  .pub-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+  }
+
   .pub-item {
-    border: 1px solid var(--border); border-radius: var(--radius-sm);
-    padding: 16px 20px; display: flex; gap: 16px; align-items: flex-start;
-    transition: border-color 0.2s, box-shadow 0.2s;
+    display: grid;
+    grid-template-columns: 100px 1fr 130px;
+    gap: 18px;
+    padding: 20px 22px;
+    border-bottom: 1px solid var(--border-light);
+    align-items: start;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.4s, transform 0.4s, background 0.2s;
   }
-  .pub-item:hover { border-color: var(--orange); box-shadow: 0 2px 12px rgba(255,130,0,0.08); }
-  .pub-num {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px; font-weight: 700; color: var(--orange);
-    min-width: 28px; line-height: 1.2; padding-top: 2px;
-  }
-  .pub-body { flex: 1; }
-  .pub-title { font-size: 14px; font-weight: 500; color: var(--text-primary); margin-bottom: 5px; line-height: 1.5; }
-  .pub-meta { font-size: 12px; color: var(--text-muted); }
-  .pub-meta strong { color: var(--text-secondary); }
-  .pub-badge {
-    font-size: 11px; padding: 2px 8px; border-radius: 20px;
-    background: var(--orange-light); color: var(--orange);
-    border: 1px solid rgba(255,130,0,0.3);
-    white-space: nowrap; flex-shrink: 0; height: fit-content;
-    margin-top: 2px;
-  }
-  .pub-badge.q2 { background: var(--smokey-light); color: var(--smokey); border-color: var(--border); }
-  .show-more-btn {
-    margin-top: 20px; display: block; width: 100%; padding: 12px;
-    border: 1px dashed var(--border); border-radius: var(--radius-sm);
-    background: none; cursor: pointer; font-size: 13px; color: var(--text-muted);
-    transition: all 0.2s; text-align: center;
-  }
-  .show-more-btn:hover { border-color: var(--orange); color: var(--orange); }
 
-  /* ── AWARDS ──────────────────────────────────── */
-  #awards { background: var(--smokey-dark); }
-  #awards h2 { color: var(--white); }
-  #awards .section-label { color: var(--orange); }
-  .awards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-  .award-card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: var(--radius); padding: 24px;
-    transition: background 0.2s, border-color 0.2s;
+  .pub-item.visible { opacity: 1; transform: translateY(0); }
+  .pub-item:last-child { border-bottom: none; }
+  .pub-item:hover { background: #fafaf8; }
+  .pub-item.hidden { display: none; }
+
+  .pub-type-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 8px;
+    border: 1px solid;
+    white-space: nowrap;
+    width: fit-content;
   }
-  .award-card:hover { background: rgba(255,130,0,0.08); border-color: rgba(255,130,0,0.4); }
-  .award-icon { font-size: 28px; margin-bottom: 12px; }
-  .award-title { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 6px; line-height: 1.4; }
-  .award-body { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+  .badge-journal   { color: #8a4800; border-color: #f0a050; background: #fff3e0; }
+  .badge-conference { color: #5a3a8a; border-color: #c4a3e0; background: #f5f0ff; }
+
+  .pub-first-author {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    padding: 2px 7px;
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fbbf24;
+    margin-top: 6px;
+    width: fit-content;
+  }
+
+  .pub-title {
+    font-family: 'Lora', serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.45;
+    margin-bottom: 4px;
+  }
+
+  .pub-venue {
+    font-size: 12px;
+    color: var(--ink-mid);
+    font-style: italic;
+    margin-bottom: 3px;
+    line-height: 1.4;
+  }
+
+  .pub-authors { font-size: 12px; color: var(--ink-light); line-height: 1.5; }
+  .pub-authors strong { color: var(--ink-mid); font-weight: 500; }
+
+  .pub-status-col { display: flex; justify-content: flex-end; padding-top: 2px; }
+
+  .status-pill {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 4px 9px;
+    border: 1px solid;
+    white-space: nowrap;
+    height: fit-content;
+  }
+
+  .status-published { color: #166534; border-color: #86efac; background: #f0fdf4; }
+  .status-review    { color: #b45309; border-color: #fcd34d; background: #fffbeb; }
+  .status-revision  { color: #7c3aed; border-color: #c4b5fd; background: #f5f3ff; }
+  .status-new       { color: #8a4800; border-color: #f0a050; background: #fff3e0; }
+
+  .show-all-btn {
+    width: 100%;
+    padding: 14px;
+    border: 1px dashed var(--border);
+    border-top: none;
+    background: var(--surface);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .show-all-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+  /* ── EDUCATION ──────────────────────────── */
+  .edu-list { display: flex; flex-direction: column; }
+
+  .edu-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 36px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--border-light);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .edu-item.visible { opacity: 1; transform: translateY(0); }
+  .edu-item:last-child { border-bottom: none; }
+
+  .edu-period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-light);
+    padding-top: 4px;
+    line-height: 1.7;
+  }
+
+  .edu-degree {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .edu-major { font-size: 13.5px; color: var(--ink-mid); margin-bottom: 4px; }
+  .edu-uni { font-size: 13.5px; color: var(--accent); font-weight: 500; margin-bottom: 10px; }
+
+  .edu-detail { font-size: 13px; color: var(--ink-light); line-height: 1.75; }
+
+  .edu-badge {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 3px 9px;
+    margin-top: 10px;
+    margin-right: 6px;
+  }
+
+  .badge-completed { background: #f0fdf4; color: #166534; border: 1px solid #86efac; }
+  .badge-candidate { background: var(--accent-light); color: var(--accent); border: 1px solid #f0a050; }
+  .badge-defended  { background: #fef3c7; color: #92400e; border: 1px solid #fbbf24; }
+
+  /* ── EXPERIENCE ─────────────────────────── */
+  .exp-list { display: flex; flex-direction: column; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 36px;
+    padding: 30px 0;
+    border-bottom: 1px solid var(--border-light);
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+
+  .exp-item.visible { opacity: 1; transform: translateY(0); }
+  .exp-item:last-child { border-bottom: none; }
+
+  .exp-period {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--ink-light);
+    padding-top: 4px;
+    line-height: 1.7;
+  }
+
+  .exp-role {
+    font-family: 'Lora', serif;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+
+  .exp-org { font-size: 13px; color: var(--accent); font-weight: 500; margin-bottom: 12px; }
+
+  .exp-points { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+
+  .exp-points li {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.65;
+    padding-left: 15px;
+    position: relative;
+  }
+
+  .exp-points li::before { content: '–'; position: absolute; left: 0; color: var(--accent); }
+
+  /* ── SKILLS TABLE ───────────────────────── */
+  .skills-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border);
+  }
+
+  .skills-table tr {
+    border-bottom: 1px solid var(--border-light);
+    transition: background 0.15s;
+  }
+
+  .skills-table tr:last-child { border-bottom: none; }
+  .skills-table tr:hover { background: var(--accent-light); }
+  .skills-table td { padding: 14px 20px; vertical-align: top; }
+
+  .skills-table td:first-child {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--ink-light);
+    width: 160px;
+    border-right: 1px solid var(--border-light);
+    white-space: nowrap;
+    background: rgba(0,0,0,0.018);
+  }
+
+  .skills-table td:last-child {
+    font-size: 13px;
+    color: var(--ink-mid);
+    line-height: 1.85;
+  }
+
+  /* ── AWARDS ─────────────────────────────── */
+  .awards-list {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+  }
+
+  .award-item {
+    display: flex;
+    gap: 16px;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--border-light);
+    align-items: flex-start;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: opacity 0.4s, transform 0.4s, background 0.2s;
+  }
+
+  .award-item.visible { opacity: 1; transform: translateX(0); }
+  .award-item:last-child { border-bottom: none; }
+  .award-item:hover { background: var(--accent-light); }
+
+  .award-icon { font-size: 17px; flex-shrink: 0; width: 24px; text-align: center; margin-top: 2px; }
+
+  .award-body { flex: 1; }
+  .award-title { font-size: 13.5px; font-weight: 500; color: var(--ink); margin-bottom: 2px; line-height: 1.4; }
+  .award-detail { font-size: 12px; color: var(--ink-light); line-height: 1.55; }
+
   .award-year {
-    display: inline-block; margin-top: 12px;
-    font-size: 12px; font-weight: 600;
-    color: var(--orange); letter-spacing: 0.04em;
-  }
-
-  /* ── SKILLS ──────────────────────────────────── */
-  #skills { background: var(--smokey-light); }
-  .skills-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
-  .skill-group h3 {
-    font-size: 13px; font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.06em; color: var(--orange);
-    margin-bottom: 14px; padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill-tag {
-    font-size: 13px; padding: 6px 14px; border-radius: 40px;
-    background: var(--white); color: var(--text-primary);
-    border: 1px solid var(--border); font-weight: 400;
-    transition: all 0.15s;
-  }
-  .skill-tag:hover { border-color: var(--orange); color: var(--orange); }
-  .skill-tag.primary {
-    background: var(--orange); color: var(--white);
-    border-color: var(--orange); font-weight: 500;
-  }
-
-  /* ── CV DOWNLOAD ─────────────────────────────── */
-  #cv { background: var(--orange); }
-  .cv-inner {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 32px; flex-wrap: wrap;
-  }
-  .cv-text h2 {
-    color: var(--white); margin-bottom: 10px; font-size: 28px;
-  }
-  .cv-text p { color: rgba(255,255,255,0.8); font-size: 15px; max-width: 500px; }
-  .btn-cv {
-    background: var(--white); color: var(--orange);
-    border: none; border-radius: 40px;
-    padding: 14px 32px; font-size: 15px; font-weight: 600;
-    cursor: pointer; transition: all 0.2s; white-space: nowrap;
-    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: var(--ink-light);
     flex-shrink: 0;
+    padding-top: 3px;
+    white-space: nowrap;
   }
-  .btn-cv:hover { background: var(--smokey-dark); color: var(--white); transform: translateY(-2px); text-decoration: none; }
 
-  /* ── CONTACT ─────────────────────────────────── */
-  #contact { background: var(--white); }
-  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-  .contact-info { display: flex; flex-direction: column; gap: 16px; }
-  .contact-item {
-    display: flex; gap: 14px; align-items: center;
-    padding: 14px 16px; border: 1px solid var(--border);
-    border-radius: var(--radius-sm); transition: border-color 0.2s;
-  }
-  .contact-item:hover { border-color: var(--orange); }
-  .contact-icon {
-    width: 38px; height: 38px; border-radius: 8px;
-    background: var(--orange-light); color: var(--orange);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 16px; flex-shrink: 0;
-  }
-  .contact-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; }
-  .contact-val { font-size: 14px; font-weight: 500; color: var(--text-primary); }
-  .contact-form { display: flex; flex-direction: column; gap: 14px; }
-  .contact-form input,
-  .contact-form textarea {
-    width: 100%; padding: 12px 16px;
-    border: 1px solid var(--border); border-radius: var(--radius-sm);
-    font-family: 'Inter', sans-serif; font-size: 14px;
-    color: var(--text-primary); background: var(--white);
-    transition: border-color 0.2s; resize: vertical;
-    outline: none;
-  }
-  .contact-form input:focus,
-  .contact-form textarea:focus { border-color: var(--orange); }
-  .contact-form textarea { min-height: 120px; }
-  .contact-form button {
-    background: var(--orange); color: var(--white);
-    border: none; border-radius: 40px; padding: 13px 32px;
-    font-size: 14px; font-weight: 600; cursor: pointer;
-    transition: background 0.2s; align-self: flex-start;
-  }
-  .contact-form button:hover { background: var(--orange-dark); }
+  /* ── CONTACT ────────────────────────────── */
+  #contact { padding: 68px 0 60px; }
 
-  /* ── FOOTER ──────────────────────────────────── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .contact-lead {
+    font-family: 'Lora', serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--ink-mid);
+    margin-bottom: 18px;
+  }
+
+  .contact-detail { font-size: 13.5px; color: var(--ink-light); line-height: 1.85; }
+  .contact-detail a { color: var(--accent); text-decoration: none; }
+  .contact-detail a:hover { text-decoration: underline; }
+
+  .contact-links-col { display: flex; flex-direction: column; gap: 6px; }
+
+  .clink {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 13px 18px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    text-decoration: none;
+    color: var(--ink);
+    font-size: 13px;
+    transition: all 0.2s;
+  }
+
+  .clink:hover {
+    border-color: var(--accent);
+    background: var(--accent-light);
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .clink-label { font-size: 10px; font-family: 'IBM Plex Mono', monospace; letter-spacing: 1px; text-transform: uppercase; color: var(--ink-light); width: 80px; flex-shrink: 0; }
+  .clink-value { flex: 1; font-size: 13px; }
+  .clink-arrow { font-size: 11px; color: var(--ink-light); }
+
+  /* ── FOOTER ─────────────────────────────── */
   footer {
-    background: var(--smokey-dark); color: rgba(255,255,255,0.4);
-    text-align: center; padding: 28px 40px; font-size: 13px;
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    padding: 22px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.5px;
   }
-  footer span { color: var(--orange); }
 
-  /* ── SCROLL REVEAL ───────────────────────────── */
-  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
-  .reveal.visible { opacity: 1; transform: none; }
+  footer span { color: rgba(255,255,255,0.65); }
+  footer a { color: var(--accent-bright); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
 
-  /* ── RESPONSIVE ──────────────────────────────── */
-  @media (max-width: 900px) {
-    nav { padding: 0 20px; }
+  /* ── ANIMATIONS ─────────────────────────── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--bg); }
+  ::-webkit-scrollbar-thumb { background: var(--rule); }
+
+  /* ── RESPONSIVE ─────────────────────────── */
+  @media (max-width: 860px) {
     .nav-links { display: none; }
-    section { padding: 60px 20px; }
-    .hero-inner { flex-direction: column; text-align: center; gap: 32px; }
-    .hero-photo { width: 150px; height: 150px; }
-    .hero-eyebrow { justify-content: center; }
-    .stat-row { justify-content: center; }
-    .hero-cta { justify-content: center; }
-    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-    .research-grid, .awards-grid { grid-template-columns: 1fr; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .cv-inner { text-align: center; justify-content: center; }
-    .cv-text p { margin: 0 auto; }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .edu-item, .exp-item { grid-template-columns: 1fr; gap: 4px; }
+    .pub-item { grid-template-columns: 80px 1fr; gap: 12px; }
+    .pub-status-col { display: none; }
+    .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+    .site-wrapper { padding: 0 20px; }
+    footer { flex-direction: column; gap: 8px; text-align: center; }
+    .pub-stats-row { flex-wrap: wrap; }
+    .pub-stat-box { min-width: 80px; }
   }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ── NAV ──────────────────────────────────────── -->
 <nav>
-  <div class="nav-brand">A<span>.</span>Muzahid</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#research">Research</a></li>
-    <li><a href="#publications">Publications</a></li>
-    <li><a href="#awards">Awards</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#cv">CV</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="nav-inner">
+    <a href="#about" class="nav-name">Abu Jafar Md Muzahid</a>
+    <ul class="nav-links">
+      <li><a href="#research-interests">Research</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
 </nav>
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-inner">
-    <div class="hero-photo" id="heroPhoto">
-      <img id="heroImg" src="photo.jpg" alt="Abu Jafar Md Muzahid" style="display:block;width:100%;height:100%;object-fit:cover;">
+<div class="site-wrapper">
+
+<!-- ── ABOUT ─────────────────────────────────────── -->
+<section id="about" style="padding:80px 0 72px; border-bottom:1px solid var(--border);">
+  <div class="about-grid">
+
+    <!-- Left: bio -->
+    <div>
+      <p class="about-eyebrow">PhD Candidate · Systems &amp; Controls · UTK × ORNL</p>
+
+      <h1 class="about-name">Abu Jafar<br>Md Muzahid</h1>
+
+      <p class="about-title">Autonomous Systems · Hierarchical Reinforcement Learning · Optimal Control</p>
+
+      <div class="about-affil">
+        <div class="affil-row">
+          <span class="affil-dot">▸</span>
+          <span>PhD Candidate, Mechanical &amp; Aerospace Engineering (Systems &amp; Controls), <strong>University of Tennessee, Knoxville</strong> — exp. May 2027</span>
+        </div>
+        <div class="affil-row">
+          <span class="affil-dot">▸</span>
+          <span>Graduate Research &amp; Teaching Assistant · Proposal defended April 2026</span>
+        </div>
+        <div class="affil-row">
+          <span class="affil-dot">▸</span>
+          <span>Collaborator, Applied Research for Mobility Systems Group · <strong>Oak Ridge National Laboratory</strong> (U.S. DOE)</span>
+        </div>
+        <div class="affil-row">
+          <span class="affil-dot">▸</span>
+          <span>NSF CAREER Award No. 2237215 (RISE-AAM) contributor</span>
+        </div>
+      </div>
+
+      <p class="about-bio">
+        I develop hierarchical AI frameworks that integrate deep and multi-agent reinforcement learning with model predictive control and convex optimization — enabling connected and automated vehicles (CAVs) to coordinate safely and efficiently in mixed-traffic highway environments. My work spans algorithm design, SUMO/CARLA simulation, and collaboration with ORNL toward real-world validation of autonomous mobility systems.
+      </p>
+
+      <div class="result-callout">
+        <strong>Published result (Control Engineering Practice, Elsevier 2025):</strong>
+        Hierarchical DRL + optimal control framework for CAV on-ramp merging: <strong>+12.5% mainline throughput</strong>, <strong>−28% emergency braking events</strong>, <strong>−31.66% fuel consumption</strong> versus baseline.
+      </div>
+
+      <p class="about-bio" style="margin-bottom:28px;">
+        I hold an M.S. in Mechanical Engineering from UTK (2025) and an M.S. in Soft Computing from Universiti Malaysia Pahang (2022), where I earned the 1st Place Excellent Publication Award and a Gold Medal at Malaysia Technology Expo. With 886 Google Scholar citations (h-index 14) and a 4.9/5.0 teaching effectiveness rating, I am actively seeking tenure-track faculty and research scientist positions beginning Spring 2027.
+      </p>
+
+      <div class="about-links">
+        <a href="C_V__Abu_Jafar_Md_Muzahid_OSU.pdf" download class="about-link primary">↓ Download CV</a>
+        <a href="https://scholar.google.com/citations?user=76Q5Ev0AAAAJ&hl=en" target="_blank" class="about-link">Google Scholar</a>
+        <a href="https://www.researchgate.net/profile/Abu-Muzahid" target="_blank" class="about-link">ResearchGate</a>
+        <a href="https://orcid.org/0000-0003-2344-7027" target="_blank" class="about-link">ORCID</a>
+        <a href="https://linkedin.com/in/muzahid98" target="_blank" class="about-link">LinkedIn</a>
+        <a href="https://github.com/muzahidabu" target="_blank" class="about-link">GitHub</a>
+      </div>
     </div>
-    <div class="hero-text">
-      <div class="hero-eyebrow">Autonomous Systems · UTK × ORNL</div>
-      <h1>Abu Jafar<br>Md <em>Muzahid</em></h1>
-      <p class="hero-sub">PhD Candidate in Mechanical Engineering (Systems & Controls) at the University of Tennessee, Knoxville — building the decision-making intelligence that makes autonomous vehicles safer.</p>
-      <div class="stat-row">
-        <div class="stat-pill">
-          <span class="stat-num">832</span>
-          <span class="stat-label">Citations</span>
+
+    <!-- Right: profile card -->
+    <div class="profile-card">
+      <div class="profile-photo">
+        <img src="photo.jpg" alt="Abu Jafar Md Muzahid" onerror="this.parentElement.innerHTML='photo.jpg'">
+      </div>
+      <div class="profile-meta">
+        <div class="meta-row">
+          <span class="meta-label">Status</span>
+          <span class="meta-value">PhD Candidate · Proposal Defended Apr 2026</span>
         </div>
-        <div class="stat-pill">
-          <span class="stat-num">14</span>
-          <span class="stat-label">h-index</span>
+        <div class="meta-row">
+          <span class="meta-label">Dept.</span>
+          <span class="meta-value">Mech. &amp; Aerospace Eng. · Systems &amp; Controls</span>
         </div>
-        <div class="stat-pill">
-          <span class="stat-num">18</span>
-          <span class="stat-label">i10-index</span>
+        <div class="meta-row">
+          <span class="meta-label">University</span>
+          <span class="meta-value"><a href="https://utk.edu" target="_blank">University of Tennessee, Knoxville</a></span>
         </div>
-        <div class="stat-pill">
-          <span class="stat-num">12</span>
-          <span class="stat-label">Q1 Journals</span>
+        <div class="meta-row">
+          <span class="meta-label">Advisor</span>
+          <span class="meta-value">Dr. Zhenbo Wang (UTK)</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Email</span>
+          <span class="meta-value"><a href="mailto:amuzahid@vols.utk.edu">amuzahid@vols.utk.edu</a></span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Location</span>
+          <span class="meta-value">Louisville, TN · Greater Knoxville, USA</span>
         </div>
       </div>
-      <div class="hero-cta">
-        <a href="#research" class="btn-primary">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-          Explore Research
-        </a>
-        <a href="#contact" class="btn-outline">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-          Get in Touch
-        </a>
-      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── RESEARCH INTERESTS ─────────────────────── -->
+<section id="research-interests" class="section">
+  <p class="section-label">What I work on</p>
+  <h2 class="section-title">Research Interests</h2>
+
+  <div class="interests-grid">
+    <div class="interest-card">
+      <div class="interest-icon">🏗️</div>
+      <div class="interest-name">Hierarchical RL &amp; Temporal Abstraction</div>
+      <div class="interest-desc">Options framework and hierarchical DRL architectures for multi-level vehicle decision-making; improved sample efficiency and interpretability over flat RL.</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-icon">🚗</div>
+      <div class="interest-name">CAV On-Ramp Merging</div>
+      <div class="interest-desc">Solving highway on-ramp merging — a primary congestion and fuel-waste source — through three simulation phases: single-ramp, mixed autonomy, and corridor-wide control.</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-icon">🤝</div>
+      <div class="interest-name">Multi-Agent RL &amp; Cooperative Control</div>
+      <div class="interest-desc">MARL controllers for CAV platoons to coordinate across successive highway sections under mixed autonomy, toward ORNL real-world validation.</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-icon">⚙️</div>
+      <div class="interest-name">Optimal Control &amp; MPC</div>
+      <div class="interest-desc">Integrating model predictive control and pseudospectral convex optimization with learning-based methods to guarantee safety-constrained, dynamically feasible trajectories.</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-icon">👤</div>
+      <div class="interest-name">Human–Autonomy Interaction</div>
+      <div class="interest-desc">Human–vehicle interaction and AI teaming for automated driving and advanced air mobility (NSF CAREER RISE-AAM, Award No. 2237215).</div>
+    </div>
+    <div class="interest-card">
+      <div class="interest-icon">⚡</div>
+      <div class="interest-name">Energy-Efficient ITS</div>
+      <div class="interest-desc">U.S. DOE-funded collaboration with ORNL on the CAV–energy nexus; hierarchical intelligent control achieving 31.66% fleet-level fuel reduction vs. baseline.</div>
     </div>
   </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <div class="section-label">Who I am</div>
-    <h2>About <span>Me</span></h2>
-    <div class="about-grid reveal">
-      <div class="about-text">
-        <p>I am a PhD candidate and Graduate Research & Teaching Assistant at the University of Tennessee, Knoxville, working at the intersection of reinforcement learning, data-driven control, and connected & automated vehicles (CAVs).</p>
-        <p>My dissertation research, conducted in collaboration with <strong>Oak Ridge National Laboratory (ORNL)</strong>, develops optimal control frameworks that enable CAV platoons to cooperate intelligently and avoid chain collisions in real mixed-traffic environments. I successfully defended my PhD proposal in April 2026.</p>
-        <p>I hold an <strong>M.S. in Mechanical Engineering from UTK (2025)</strong> and an <strong>M.S. in Soft Computing & Intelligent Systems from Universiti Malaysia Pahang (2022)</strong>, where I received the Excellent Publication Award. My research has generated over 832 citations with an h-index of 14, with international collaborations spanning the UK, Japan, Spain, and Saudi Arabia.</p>
-        <p>Before pursuing my doctoral studies, I spent eight years as a lecturer and educator in Bangladesh — an experience that deeply shapes how I mentor students and communicate complex research to broad audiences.</p>
+<!-- ── PUBLICATIONS ───────────────────────────── -->
+<section id="publications" class="section">
+  <p class="section-label">Peer-reviewed work</p>
+  <h2 class="section-title">Publications</h2>
+
+  <!-- Stats row -->
+  <div class="pub-stats-row">
+    <div class="pub-stat-box">
+      <div class="pub-stat-num">886</div>
+      <div class="pub-stat-label">Citations</div>
+    </div>
+    <div class="pub-stat-box">
+      <div class="pub-stat-num">14</div>
+      <div class="pub-stat-label">h-index</div>
+    </div>
+    <div class="pub-stat-box">
+      <div class="pub-stat-num">20</div>
+      <div class="pub-stat-label">i10-index</div>
+    </div>
+    <div class="pub-stat-box">
+      <div class="pub-stat-num">17</div>
+      <div class="pub-stat-label">Journal Papers</div>
+    </div>
+    <div class="pub-stat-box">
+      <div class="pub-stat-num">9</div>
+      <div class="pub-stat-label">Conference</div>
+    </div>
+    <div class="pub-stat-box">
+      <div class="pub-stat-num">4</div>
+      <div class="pub-stat-label">Under Review</div>
+    </div>
+  </div>
+
+  <!-- Filter buttons -->
+  <div class="pub-filter">
+    <button class="filter-btn active" onclick="filterPubs('all',this)">All</button>
+    <button class="filter-btn" onclick="filterPubs('first',this)">First Author</button>
+    <button class="filter-btn" onclick="filterPubs('new',this)">2025–26</button>
+    <button class="filter-btn" onclick="filterPubs('review',this)">Under Review</button>
+    <button class="filter-btn" onclick="filterPubs('conf',this)">Conference</button>
+  </div>
+
+  <div class="pub-list" id="pubList">
+
+    <!-- Under Review (top) -->
+    <div class="pub-item" data-cat="first review new">
+      <div>
+        <div class="pub-type-badge badge-journal">Journal</div>
+        <div class="pub-first-author">1st Author</div>
       </div>
-      <div class="about-meta">
-        <div class="meta-item">
-          <div class="meta-icon">🎓</div>
-          <div>
-            <div class="meta-key">Current Position</div>
-            <div class="meta-val">PhD Candidate + GRA/GTA, UTK</div>
-          </div>
+      <div>
+        <div class="pub-title">Hierarchical Approach for On-Ramp Merging Control of Connected Vehicles in Mixed Traffic Environment</div>
+        <div class="pub-venue">Control Engineering Practice (Elsevier) · Revision submitted, 2026</div>
+        <div class="pub-authors"><strong>Abu Jafar Md Muzahid</strong>, Zhenbo Wang</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-revision">Under Review</span></div>
+    </div>
+
+    <div class="pub-item" data-cat="review new">
+      <div>
+        <div class="pub-type-badge badge-journal">Journal</div>
+      </div>
+      <div>
+        <div class="pub-title">Under Review Paper — Intelligent Transportation Systems</div>
+        <div class="pub-venue">Target: IEEE TITS / Transportation Research Part C · 2026</div>
+        <div class="pub-authors"><strong>Abu Jafar Md Muzahid</strong> et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-review">Under Review</span></div>
+    </div>
+
+    <!-- New 2025–26 -->
+    <div class="pub-item" data-cat="first new journal">
+      <div>
+        <div class="pub-type-badge badge-journal">Journal</div>
+        <div class="pub-first-author">1st Author</div>
+      </div>
+      <div>
+        <div class="pub-title">Optimizing On-Ramp Merging for Connected and Automated Vehicles: A Hierarchical Approach Using Deep Reinforcement Learning and Optimal Control</div>
+        <div class="pub-venue">Control Engineering Practice (Elsevier) · 2025 · WoS Q1</div>
+        <div class="pub-authors"><strong>Abu Jafar Md Muzahid</strong>, Zhenbo Wang</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-new">New · 2025</span></div>
+    </div>
+
+    <div class="pub-item" data-cat="first new journal">
+      <div>
+        <div class="pub-type-badge badge-journal">Journal</div>
+        <div class="pub-first-author">1st Author</div>
+      </div>
+      <div>
+        <div class="pub-title">Optimization-Based Approaches to Control of Connected and Automated Vehicles: Principles, Complexities, Applications, Challenges, and Outlook</div>
+        <div class="pub-venue">Journal of Systems Architecture (Elsevier) · 2026 · WoS Q1</div>
+        <div class="pub-authors"><strong>Abu Jafar Md Muzahid</strong>, Zhenbo Wang</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-new">New · 2026</span></div>
+    </div>
+
+    <!-- Additional journals (hidden until expanded) -->
+    <div class="pub-item extra" data-cat="first journal" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-journal">Journal</div>
+        <div class="pub-first-author">1st Author</div>
+      </div>
+      <div>
+        <div class="pub-title">Multiple Vehicle Cooperation and Collision Avoidance in Autonomous Driving: Survey and an AI-Enabled Conceptual Framework</div>
+        <div class="pub-venue">Scientific Reports (Nature Portfolio) · 2023 · WoS Q1, IF 4.6</div>
+        <div class="pub-authors"><strong>Abu Jafar Md Muzahid</strong>, Kamarulzaman S. F., et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+    <div class="pub-item extra" data-cat="first journal" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-journal">Journal</div>
+        <div class="pub-first-author">1st Author</div>
+      </div>
+      <div>
+        <div class="pub-title">Deep Reinforcement Learning Based Driving Strategy for Avoidance of Chain Collision and Its Safety Efficiency Analysis in Autonomous Vehicles</div>
+        <div class="pub-venue">IEEE Access · 2022 · WoS Q1, IF 3.9 · ~800 citations</div>
+        <div class="pub-authors"><strong>Abu Jafar Md Muzahid</strong>, Kamarulzaman S. F., et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+    <div class="pub-item extra" data-cat="journal" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-journal">Journal</div>
+      </div>
+      <div>
+        <div class="pub-title">Deep Learning-Based Vehicle Health Monitoring System Utilizing a Hybrid CNN/Bidirectional GRU</div>
+        <div class="pub-venue">Expert Systems With Applications (Elsevier) · 2024 · WoS Q1, IF 7.5</div>
+        <div class="pub-authors">Ali M., <strong>Muzahid A. J. M.</strong>, et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+    <div class="pub-item extra" data-cat="journal" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-journal">Journal</div>
+      </div>
+      <div>
+        <div class="pub-title">Impact Learning: A Learning Method from Feature's Impact and Competition</div>
+        <div class="pub-venue">Journal of Computational Science (Elsevier) · 2024 · WoS Q1, IF 3.3</div>
+        <div class="pub-authors">Mazumder P., <strong>Muzahid A. J. M.</strong>, et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+    <div class="pub-item extra" data-cat="journal" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-journal">Journal</div>
+      </div>
+      <div>
+        <div class="pub-title">A Comprehensive Review on Deep Learning Assisted Computer Vision for Smart Greenhouse Agriculture</div>
+        <div class="pub-venue">IEEE Access · 2024 · WoS Q1, IF 3.9</div>
+        <div class="pub-authors">Islam A., <strong>Muzahid A. J. M.</strong>, et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+    <div class="pub-item extra" data-cat="journal" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-journal">Journal</div>
+      </div>
+      <div>
+        <div class="pub-title">SG-PBFS: Shortest Gap-Priority Based Fair Scheduling in Cloud Environment</div>
+        <div class="pub-venue">Future Generation Computer Systems (Elsevier) · 2024 · WoS Q1, IF 7.5</div>
+        <div class="pub-authors">Hossain M. A., <strong>Muzahid A. J. M.</strong>, et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+    <div class="pub-item extra" data-cat="journal" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-journal">Journal</div>
+      </div>
+      <div>
+        <div class="pub-title">Priority-Based Job Scheduling Utilizing Gaps to Increase Efficiency in Cloud Computing</div>
+        <div class="pub-venue">Sustainable Computing: Informatics and Systems (Elsevier) · 2024 · WoS Q1, IF 4.5</div>
+        <div class="pub-authors">Hossain M. A., <strong>Muzahid A. J. M.</strong>, et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+    <div class="pub-item extra" data-cat="journal" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-journal">Journal</div>
+      </div>
+      <div>
+        <div class="pub-title">A Review on Job Scheduling in Cloud Computing and Priority Rule Based Intelligent Framework</div>
+        <div class="pub-venue">Journal of King Saud University – CIS (Elsevier) · 2022 · WoS Q1, IF 6.9</div>
+        <div class="pub-authors">Hossain M. A., <strong>Muzahid A. J. M.</strong>, et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+    <!-- Conference papers (hidden) -->
+    <div class="pub-item extra" data-cat="conf first" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-conference">Conference</div>
+        <div class="pub-first-author">1st Author</div>
+      </div>
+      <div>
+        <div class="pub-title">Comparison of PPO and SAC Algorithms for Collision Avoidance Among Multiple Autonomous Vehicles</div>
+        <div class="pub-venue">IEEE ICSECS-ICOCSIM · August 2021</div>
+        <div class="pub-authors"><strong>Abu Jafar Md Muzahid</strong>, Kamarulzaman S. F., et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+    <div class="pub-item extra" data-cat="conf first" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-conference">Conference</div>
+        <div class="pub-first-author">1st Author</div>
+      </div>
+      <div>
+        <div class="pub-title">Optimal Safety Planning and Driving Decision-Making for Multiple Autonomous Vehicles: A Learning Based Approach</div>
+        <div class="pub-venue">IEEE ETCCE · December 2021</div>
+        <div class="pub-authors"><strong>Abu Jafar Md Muzahid</strong>, Kamarulzaman S. F., et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+    <div class="pub-item extra" data-cat="conf first" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-conference">Conference</div>
+        <div class="pub-first-author">1st Author</div>
+      </div>
+      <div>
+        <div class="pub-title">Learning Based Conceptual Framework for Threat Assessment of Multiple Vehicle Collision in Autonomous Driving</div>
+        <div class="pub-venue">IEEE ETCCE · November 2020</div>
+        <div class="pub-authors"><strong>Abu Jafar Md Muzahid</strong>, Kamarulzaman S. F., et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+    <div class="pub-item extra" data-cat="conf new" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-conference">Conference</div>
+      </div>
+      <div>
+        <div class="pub-title">PhishGuard: Machine Learning-Powered Phishing URL Detection and Classification</div>
+        <div class="pub-venue">IEEE CSCE 2023 · Las Vegas, NV · Published 2024</div>
+        <div class="pub-authors">Islam A., <strong>Muzahid A. J. M.</strong>, et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+    <div class="pub-item extra" data-cat="conf" style="display:none;">
+      <div>
+        <div class="pub-type-badge badge-conference">Conference</div>
+      </div>
+      <div>
+        <div class="pub-title">Deep Learning Enabled Fall Detection Exploiting Gait Analysis</div>
+        <div class="pub-venue">44th IEEE EMBC · Glasgow, UK · July 2022</div>
+        <div class="pub-authors">Ali M., <strong>Muzahid A. J. M.</strong>, et al.</div>
+      </div>
+      <div class="pub-status-col"><span class="status-pill status-published">Published</span></div>
+    </div>
+
+  </div><!-- /pub-list -->
+
+  <button class="show-all-btn" id="showAllBtn" onclick="togglePubs()">
+    + Show all 17 journal papers &amp; 9 conference papers
+  </button>
+
+  <p style="margin-top:16px; font-size:12.5px; color:var(--ink-light); font-family:'IBM Plex Mono',monospace;">
+    Full list →
+    <a href="https://scholar.google.com/citations?user=76Q5Ev0AAAAJ&hl=en" target="_blank">Google Scholar</a> ·
+    <a href="https://www.researchgate.net/profile/Abu-Muzahid" target="_blank">ResearchGate</a> ·
+    <a href="https://orcid.org/0000-0003-2344-7027" target="_blank">ORCID 0000-0003-2344-7027</a> ·
+    <a href="https://www.scopus.com/authid/detail.uri?authorId=57221741096" target="_blank">Scopus</a>
+  </p>
+</section>
+
+<!-- ── EDUCATION ──────────────────────────────── -->
+<section id="education" class="section">
+  <p class="section-label">Academic background</p>
+  <h2 class="section-title">Education</h2>
+
+  <div class="edu-list">
+
+    <div class="edu-item">
+      <div class="edu-period">2023 – Present<br>(exp. May 2027)</div>
+      <div>
+        <div class="edu-degree">Doctor of Philosophy</div>
+        <div class="edu-major">Mechanical &amp; Aerospace Engineering · Concentration: Systems &amp; Controls</div>
+        <div class="edu-uni">University of Tennessee, Knoxville, USA</div>
+        <div class="edu-detail">
+          Dissertation: Hierarchical AI for Connected and Automated Vehicle On-Ramp Merging Control<br>
+          Advisor: Dr. Zhenbo Wang · Committee: Dr. Omer San (UTK), Dr. Chieh (Ross) Wang (ORNL)<br>
+          Proposal defended: April 2026 · GPA: 3.83/4.0
         </div>
-        <div class="meta-item">
-          <div class="meta-icon">🔬</div>
-          <div>
-            <div class="meta-key">Research Focus</div>
-            <div class="meta-val">CAVs · Reinforcement Learning · Optimal Control</div>
-          </div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-icon">🏛️</div>
-          <div>
-            <div class="meta-key">Collaboration</div>
-            <div class="meta-val">Oak Ridge National Laboratory (ORNL)</div>
-          </div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-icon">📍</div>
-          <div>
-            <div class="meta-key">Location</div>
-            <div class="meta-val">Knoxville, Tennessee, USA</div>
-          </div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-icon">📅</div>
-          <div>
-            <div class="meta-key">Expected Graduation</div>
-            <div class="meta-val">Spring 2027 — Open to positions</div>
-          </div>
-        </div>
-        <div class="meta-item">
-          <div class="meta-icon">🌏</div>
-          <div>
-            <div class="meta-key">Origin</div>
-            <div class="meta-val">Bangladesh · Malaysia · USA</div>
-          </div>
-        </div>
+        <span class="edu-badge badge-candidate">PhD Candidate</span>
+        <span class="edu-badge badge-defended">Proposal Defended Apr 2026</span>
       </div>
     </div>
+
+    <div class="edu-item">
+      <div class="edu-period">2023 – 2025</div>
+      <div>
+        <div class="edu-degree">Master of Science (Concurrent)</div>
+        <div class="edu-major">Mechanical Engineering</div>
+        <div class="edu-uni">University of Tennessee, Knoxville, USA</div>
+        <div class="edu-detail">
+          Earned concurrently during PhD study · GPA: 3.83/4.0 · Awarded August 2025<br>
+          Focus: Control systems, optimization, vehicle dynamics, advanced air mobility
+        </div>
+        <span class="edu-badge badge-completed">Completed Aug 2025</span>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-period">2021 – 2022</div>
+      <div>
+        <div class="edu-degree">Master of Science</div>
+        <div class="edu-major">Soft Computing &amp; Intelligent Systems</div>
+        <div class="edu-uni">Universiti Malaysia Pahang Al-Sultan Abdullah (UMPSA), Malaysia</div>
+        <div class="edu-detail">
+          Thesis: Deep Reinforcement Learning for Multiple Vehicle Collision Avoidance<br>
+          Research Fellowship recipient · 1st Place Excellent Publication Award · Gold Medal, Malaysia Technology Expo 2022
+        </div>
+        <span class="edu-badge badge-completed">Completed 2022</span>
+      </div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-period">2005 – 2009</div>
+      <div>
+        <div class="edu-degree">Bachelor of Science</div>
+        <div class="edu-major">Electrical &amp; Electronic Engineering</div>
+        <div class="edu-uni">Shahjalal University of Science &amp; Technology (SUST), Bangladesh</div>
+        <div class="edu-detail">
+          Foundation in signal processing, control theory, electronics, and embedded systems
+        </div>
+        <span class="edu-badge badge-completed">Completed 2009</span>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- RESEARCH -->
-<section id="research">
-  <div class="container">
-    <div class="section-label">What I work on</div>
-    <h2>Research <span>Areas</span></h2>
-    <div class="research-grid">
-      <div class="research-card reveal">
-        <div class="rc-icon">🚗</div>
-        <h3>Connected & Automated Vehicles (CAVs)</h3>
-        <p>Designing cooperative control systems for CAV platoons operating in mixed human-machine traffic, with a focus on chain-collision prevention and safe following behavior at highway and urban speeds.</p>
-        <div class="rc-tags">
-          <span class="rc-tag">Platoon Control</span>
-          <span class="rc-tag">Mixed Traffic</span>
-          <span class="rc-tag">Collision Avoidance</span>
-        </div>
-      </div>
-      <div class="research-card reveal">
-        <div class="rc-icon">🧠</div>
-        <h3>Reinforcement Learning for Control</h3>
-        <p>Applying deep RL algorithms — including PPO, SAC, and custom multi-agent architectures — to real-time vehicle decision-making problems where classical control methods fall short in dynamic environments.</p>
-        <div class="rc-tags">
-          <span class="rc-tag">Deep RL</span>
-          <span class="rc-tag">PPO / SAC</span>
-          <span class="rc-tag">Multi-Agent</span>
-        </div>
-      </div>
-      <div class="research-card reveal">
-        <div class="rc-icon">📊</div>
-        <h3>Data-Driven Optimal Control</h3>
-        <p>Building data-driven frameworks that replace or augment model-based controllers, enabling vehicles to learn safe and energy-efficient behaviors directly from interaction with high-fidelity simulation environments.</p>
-        <div class="rc-tags">
-          <span class="rc-tag">Optimal Control</span>
-          <span class="rc-tag">CARLA Simulator</span>
-          <span class="rc-tag">MATLAB Simulink</span>
-        </div>
-      </div>
-      <div class="research-card reveal">
-        <div class="rc-icon">🛣️</div>
-        <h3>Intelligent Transportation Systems</h3>
-        <p>Investigating how vehicle-to-vehicle and vehicle-to-infrastructure communication can be leveraged to improve traffic flow efficiency, reduce energy consumption, and enhance safety at scale.</p>
-        <div class="rc-tags">
-          <span class="rc-tag">V2V / V2X</span>
-          <span class="rc-tag">Traffic Flow</span>
-          <span class="rc-tag">Safety Analysis</span>
-        </div>
-      </div>
-      <div class="research-card reveal">
-        <div class="rc-icon">🤖</div>
-        <h3>Robotics & Autonomous Systems</h3>
-        <p>Extending CAV decision-making methodologies to broader autonomous systems contexts, including multi-robot coordination, route tracking, and real-time threat assessment in dynamic environments.</p>
-        <div class="rc-tags">
-          <span class="rc-tag">Multi-Robot</span>
-          <span class="rc-tag">Threat Assessment</span>
-          <span class="rc-tag">Route Tracking</span>
-        </div>
-      </div>
-      <div class="research-card reveal">
-        <div class="rc-icon">⚡</div>
-        <h3>CAV–Energy Nexus</h3>
-        <p>Collaborating with ORNL on the intersection of CAV control optimization and energy efficiency — exploring how intelligent driving strategies can reduce fleet-level energy consumption in electrified transport.</p>
-        <div class="rc-tags">
-          <span class="rc-tag">ORNL Collaboration</span>
-          <span class="rc-tag">Energy Efficiency</span>
-          <span class="rc-tag">EV Integration</span>
-        </div>
+<!-- ── EXPERIENCE ─────────────────────────────── -->
+<section id="experience" class="section">
+  <p class="section-label">Positions held</p>
+  <h2 class="section-title">Research &amp; Teaching Experience</h2>
+
+  <div class="exp-list">
+
+    <div class="exp-item">
+      <div class="exp-period">Jan 2026 –<br>Present</div>
+      <div>
+        <div class="exp-role">Graduate Research &amp; Teaching Assistant (GRA + GTA)</div>
+        <div class="exp-org">Dept. of Mechanical &amp; Aerospace Engineering · University of Tennessee, Knoxville</div>
+        <ul class="exp-points">
+          <li>Developing MARL-based corridor-wide CAV coordination framework for multi-ramp highway merging (Phase 3 of dissertation).</li>
+          <li>Teaching ME 391 (Engineering Analysis) and AE 424 (Aerospace Structures); 4.9/5.0 student effectiveness rating.</li>
+          <li>Mentoring 9 junior undergraduate and graduate researchers on RL and simulation methods.</li>
+          <li>Leading weekly research meetings and co-supervising undergraduate capstone projects.</li>
+        </ul>
       </div>
     </div>
+
+    <div class="exp-item">
+      <div class="exp-period">Aug 2023 –<br>Dec 2025</div>
+      <div>
+        <div class="exp-role">Graduate Research Assistant (GRA)</div>
+        <div class="exp-org">Dept. of Mechanical &amp; Aerospace Engineering · University of Tennessee, Knoxville</div>
+        <ul class="exp-points">
+          <li>Designed and implemented hierarchical DRL + convex optimization framework for single-ramp CAV merging; published in Control Engineering Practice (Elsevier, 2025).</li>
+          <li>Completed review paper on optimization-based CAV control; published in Journal of Systems Architecture (Elsevier, 2026).</li>
+          <li>Contributed to NSF CAREER RISE-AAM (Award No. 2237215) on human–autonomy teaming in advanced air mobility.</li>
+          <li>Defended PhD dissertation proposal: April 2026.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">2023 – Present<br>(ongoing)</div>
+      <div>
+        <div class="exp-role">Research Collaborator — Applied Research for Mobility Systems</div>
+        <div class="exp-org">Oak Ridge National Laboratory (ORNL) · U.S. Department of Energy</div>
+        <ul class="exp-points">
+          <li>Collaborating on U.S. DOE-funded CAV energy efficiency research under the Applied Research for Mobility Systems group.</li>
+          <li>Coordinating with Dr. Chieh (Ross) Wang on simulation-to-reality validation and energy modeling for autonomous vehicle control.</li>
+          <li>Preparing for real-world testbed experiments at ORNL infrastructure.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period">2009 – 2020<br>(~11 years)</div>
+      <div>
+        <div class="exp-role">Lecturer / Science &amp; Technology Educator</div>
+        <div class="exp-org">Various institutions · Bangladesh</div>
+        <ul class="exp-points">
+          <li>Taught undergraduate-level courses in electronics, mathematics, computer science, and engineering fundamentals.</li>
+          <li>Developed curriculum materials and assessment frameworks for 300+ students per year.</li>
+          <li>Built strong foundation in pedagogy, technical communication, and mentorship that informs current 4.9/5.0 UTK teaching rating.</li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </section>
 
-<!-- PUBLICATIONS -->
-<section id="publications">
-  <div class="container">
-    <div class="section-label">Peer-reviewed work</div>
-    <h2>Selected <span>Publications</span></h2>
-    <div class="pub-stats reveal">
-      <div class="pub-stat"><div class="pub-stat-num">832</div><div class="pub-stat-label">Total Citations</div></div>
-      <div class="pub-stat"><div class="pub-stat-num">14</div><div class="pub-stat-label">h-index</div></div>
-      <div class="pub-stat"><div class="pub-stat-num">18</div><div class="pub-stat-label">i10-index</div></div>
-      <div class="pub-stat"><div class="pub-stat-num">12</div><div class="pub-stat-label">Journal Articles</div></div>
-      <div class="pub-stat"><div class="pub-stat-num">8</div><div class="pub-stat-label">Conference Papers</div></div>
+<!-- ── SKILLS ─────────────────────────────────── -->
+<section id="skills" class="section">
+  <p class="section-label">Technical expertise</p>
+  <h2 class="section-title">Skills &amp; Tools</h2>
+
+  <table class="skills-table">
+    <tr>
+      <td>RL / AI Frameworks</td>
+      <td>Deep Reinforcement Learning (DRL) · Multi-Agent RL (MARL) · Hierarchical RL · Options Framework · Stable-Baselines3 · Ray RLlib · OpenAI Gymnasium · PPO · SAC · DDPG · PyTorch · TensorFlow / Keras</td>
+    </tr>
+    <tr>
+      <td>Control &amp; Optimization</td>
+      <td>Model Predictive Control (MPC) · Convex Optimization · Pseudospectral Methods · Trajectory Optimization · Safety-Constrained Control · MATLAB / Simulink · Linear Quadratic Regulator (LQR)</td>
+    </tr>
+    <tr>
+      <td>Simulation Platforms</td>
+      <td>SUMO (Simulation of Urban MObility) · CARLA Simulator · HighwayEnv · Unity3D · Vehicle Dynamics Simulation · ITS Evaluation &amp; Benchmarking</td>
+    </tr>
+    <tr>
+      <td>Programming &amp; Dev</td>
+      <td>Python · MATLAB · C++ · R · SQL · Git / GitHub · LaTeX (Overleaf) · Jupyter Notebook · Google Colab · AWS</td>
+    </tr>
+    <tr>
+      <td>Research &amp; Soft Skills</td>
+      <td>Scientific Writing (17 Q1 journals) · Peer Review · Graduate Teaching (ME 391, AE 424) · Mentorship (9 junior researchers) · Grant Writing · Technical Presentations · Cross-disciplinary Collaboration (ORNL)</td>
+    </tr>
+  </table>
+</section>
+
+<!-- ── AWARDS ─────────────────────────────────── -->
+<section id="awards" class="section">
+  <p class="section-label">Recognition</p>
+  <h2 class="section-title">Awards &amp; Honors</h2>
+
+  <div class="awards-list">
+
+    <div class="award-item">
+      <div class="award-icon">🎓</div>
+      <div class="award-body">
+        <div class="award-title">Fully Funded Doctoral Scholarship &amp; GRA — University of Tennessee, Knoxville</div>
+        <div class="award-detail">Competitive fully funded PhD scholarship and Graduate Research Assistantship, supporting Systems &amp; Controls research with ORNL collaboration.</div>
+      </div>
+      <div class="award-year">2023</div>
     </div>
-    <div class="pub-list" id="pubList">
-      <div class="pub-item reveal">
-        <div class="pub-num">1</div>
-        <div class="pub-body">
-          <div class="pub-title">Multiple Vehicle Cooperation and Collision Avoidance in Autonomous Driving: Survey and an AI-Enabled Conceptual Framework</div>
-          <div class="pub-meta"><strong>Scientific Reports</strong> (Nature Portfolio) · 2023 · WoS Q1, IF: 4.6</div>
-        </div>
-        <span class="pub-badge">Q1 · First Author</span>
+
+    <div class="award-item">
+      <div class="award-icon">📄</div>
+      <div class="award-body">
+        <div class="award-title">Best Paper Incentive Award — Universiti Malaysia Pahang Al-Sultan Abdullah (UMPSA)</div>
+        <div class="award-detail">Awarded by UMPSA for outstanding research publication impact and productivity during postgraduate study.</div>
       </div>
-      <div class="pub-item reveal">
-        <div class="pub-num">2</div>
-        <div class="pub-body">
-          <div class="pub-title">Deep Reinforcement Learning Based Driving Strategy for Avoidance of Chain Collision and Its Safety Efficiency Analysis in Autonomous Vehicles</div>
-          <div class="pub-meta"><strong>IEEE Access</strong> · 2022 · WoS Q1, IF: 3.9</div>
-        </div>
-        <span class="pub-badge">Q1 · First Author</span>
-      </div>
-      <div class="pub-item reveal">
-        <div class="pub-num">3</div>
-        <div class="pub-body">
-          <div class="pub-title">Deep Learning-Based Vehicle Health Monitoring System Utilizing a Hybrid CNN/Bidirectional GRU</div>
-          <div class="pub-meta"><strong>Expert Systems With Applications</strong> (Elsevier) · 2024 · WoS Q1, IF: 7.5</div>
-        </div>
-        <span class="pub-badge">Q1</span>
-      </div>
-      <div class="pub-item reveal">
-        <div class="pub-num">4</div>
-        <div class="pub-body">
-          <div class="pub-title">SG-PBFS: Shortest Gap-Priority Based Fair Scheduling Technique for Job Scheduling in Cloud Environment</div>
-          <div class="pub-meta"><strong>Future Generation Computer Systems</strong> (Elsevier) · 2024 · WoS Q1, IF: 7.5</div>
-        </div>
-        <span class="pub-badge">Q1</span>
-      </div>
-      <div class="pub-item reveal" id="pub5" style="display:none">
-        <div class="pub-num">5</div>
-        <div class="pub-body">
-          <div class="pub-title">Priority-Based Job Scheduling Technique That Utilizes Gaps to Increase Efficiency in Cloud Computing</div>
-          <div class="pub-meta"><strong>Sustainable Computing: Informatics and Systems</strong> (Elsevier) · 2024 · WoS Q1, IF: 4.5</div>
-        </div>
-        <span class="pub-badge">Q1</span>
-      </div>
-      <div class="pub-item reveal" id="pub6" style="display:none">
-        <div class="pub-num">6</div>
-        <div class="pub-body">
-          <div class="pub-title">A Comprehensive Review on Deep Learning Assisted Computer Vision Techniques for Smart Greenhouse Agriculture</div>
-          <div class="pub-meta"><strong>IEEE Access</strong> · 2024 · WoS Q1, IF: 3.9</div>
-        </div>
-        <span class="pub-badge">Q1</span>
-      </div>
-      <div class="pub-item reveal" id="pub7" style="display:none">
-        <div class="pub-num">7</div>
-        <div class="pub-body">
-          <div class="pub-title">Impact Learning: A Learning Method from Feature's Impact and Competition</div>
-          <div class="pub-meta"><strong>Journal of Computational Science</strong> (Elsevier) · 2024 · WoS Q1, IF: 3.3</div>
-        </div>
-        <span class="pub-badge">Q1</span>
-      </div>
-      <div class="pub-item reveal" id="pub8" style="display:none">
-        <div class="pub-num">8</div>
-        <div class="pub-body">
-          <div class="pub-title">A Review on Job Scheduling Technique in Cloud Computing and Priority Rule Based Intelligent Framework</div>
-          <div class="pub-meta"><strong>Journal of King Saud University – Computer and Information Sciences</strong> (Elsevier) · 2022 · WoS Q1, IF: 6.9</div>
-        </div>
-        <span class="pub-badge">Q1</span>
-      </div>
-      <div class="pub-item reveal" id="pub9" style="display:none">
-        <div class="pub-num">9</div>
-        <div class="pub-body">
-          <div class="pub-title">AI-Powered Asthma Prediction Towards Treatment Formulation: An Android App Approach</div>
-          <div class="pub-meta"><strong>Intelligent Automation & Soft Computing</strong> · 2022 · WoS Q2, IF: 3.54</div>
-        </div>
-        <span class="pub-badge q2">Q2</span>
-      </div>
-      <div class="pub-item reveal" id="pub10" style="display:none">
-        <div class="pub-num">10</div>
-        <div class="pub-body">
-          <div class="pub-title">Yeast and Bacteria Co-Culture-Based Lipid Production Through Bioremediation of Palm Oil Mill Effluent</div>
-          <div class="pub-meta"><strong>Biomass Conversion and Biorefinery</strong> (Springer) · 2021 · WoS Q2, IF: 4.0</div>
-        </div>
-        <span class="pub-badge q2">Q2</span>
-      </div>
+      <div class="award-year">2023</div>
     </div>
-    <button class="show-more-btn" id="showMoreBtn" onclick="togglePubs()">
-      ↓ Show all 12 journal papers + 8 conference papers
-    </button>
-    <p style="margin-top:16px;font-size:13px;color:var(--text-muted)">
-      Full publication list on
-      <a href="https://scholar.google.com/citations?user=76Q5Ev0AAAAJ&hl=en" target="_blank">Google Scholar</a> ·
-      <a href="#" target="_blank">ResearchGate</a> ·
-      <a href="#" target="_blank">ORCID</a>
-    </p>
+
+    <div class="award-item">
+      <div class="award-icon">🥇</div>
+      <div class="award-body">
+        <div class="award-title">Gold Medal — Malaysia Technology Expo™ (MTE)</div>
+        <div class="award-detail">International gold medal for innovation in autonomous vehicle research and AI-enabled collision avoidance systems.</div>
+      </div>
+      <div class="award-year">2022 · KL, Malaysia</div>
+    </div>
+
+    <div class="award-item">
+      <div class="award-icon">🏆</div>
+      <div class="award-body">
+        <div class="award-title">1st Place — Excellent Publication Award, UMPSA Research &amp; Postgraduate Award Ceremony</div>
+        <div class="award-detail">First place recognition for top publication output from Master's research at UMPSA.</div>
+      </div>
+      <div class="award-year">2022 · Malaysia</div>
+    </div>
+
+    <div class="award-item">
+      <div class="award-icon">🌍</div>
+      <div class="award-body">
+        <div class="award-title">Special Award — EURO BUSINESS-HALLER (Poland) at Malaysia Technology Expo 2022</div>
+        <div class="award-detail">International recognition from Poland for innovation in intelligent and autonomous systems research.</div>
+      </div>
+      <div class="award-year">2022 · Poland / Malaysia</div>
+    </div>
+
+    <div class="award-item">
+      <div class="award-icon">🏅</div>
+      <div class="award-body">
+        <div class="award-title">Best Innovation in Manufacturing — CITREX Exhibition, UMPSA</div>
+        <div class="award-detail">Recognized for best innovation in manufacturing at UMPSA's annual research and innovation showcase.</div>
+      </div>
+      <div class="award-year">2021 · Malaysia</div>
+    </div>
+
+    <div class="award-item">
+      <div class="award-icon">💰</div>
+      <div class="award-body">
+        <div class="award-title">FRGS Research Grant — Ministry of Higher Education Malaysia</div>
+        <div class="award-detail">Fundamental Research Grant Scheme supporting autonomous vehicle control research. PI: Dr. S. F. Kamarulzaman · RM 54,000.</div>
+      </div>
+      <div class="award-year">2020 · RM 54,000</div>
+    </div>
+
+    <div class="award-item">
+      <div class="award-icon">📚</div>
+      <div class="award-body">
+        <div class="award-title">Master Research Scheme (MRS) Fellowship — UMPSA</div>
+        <div class="award-detail">Competitive graduate research fellowship for full-time Master's research in intelligent and autonomous systems · RM 21,600.</div>
+      </div>
+      <div class="award-year">2021 · RM 21,600</div>
+    </div>
+
+    <div class="award-item">
+      <div class="award-icon">✅</div>
+      <div class="award-body">
+        <div class="award-title">PhD Dissertation Proposal Successfully Defended</div>
+        <div class="award-detail">Advanced to full PhD candidacy after defending proposal on hierarchical traffic coordination for CAV on-ramp merging to committee including ORNL collaborator.</div>
+      </div>
+      <div class="award-year">Apr 2026 · UTK</div>
+    </div>
+
   </div>
 </section>
 
-<!-- AWARDS -->
-<section id="awards">
-  <div class="container">
-    <div class="section-label">Recognition</div>
-    <h2>Awards & <span>Honors</span></h2>
-    <div class="awards-grid">
-      <div class="award-card reveal">
-        <div class="award-icon">🥇</div>
-        <div class="award-title">Gold Medal — Malaysia Technology Expo™</div>
-        <div class="award-body">International gold medal awarded at the Malaysia Technology Expo for innovation in autonomous vehicle research and palm oil supply chain systems.</div>
-        <span class="award-year">2022 · Kuala Lumpur, Malaysia</span>
-      </div>
-      <div class="award-card reveal">
-        <div class="award-icon">🏆</div>
-        <div class="award-title">1st Place — Excellent Publication Award</div>
-        <div class="award-body">First place winner at the UMP Research & Postgraduate Award Ceremony, recognizing outstanding publication output from doctoral research.</div>
-        <span class="award-year">2022 · Universiti Malaysia Pahang</span>
-      </div>
-      <div class="award-card reveal">
-        <div class="award-icon">🌍</div>
-        <div class="award-title">Special Award — EURO BUSINESS-HALLER</div>
-        <div class="award-body">International special award from EURO BUSINESS-HALLER, Poland, recognizing research impact in intelligent systems and autonomous driving.</div>
-        <span class="award-year">2022 · Poland</span>
-      </div>
-      <div class="award-card reveal">
-        <div class="award-icon">💰</div>
-        <div class="award-title">FRGS Research Grant</div>
-        <div class="award-body">Fundamental Research Grant Scheme (FRGS) awarded by the Ministry of Higher Education, Malaysia, to support autonomous vehicle control research.</div>
-        <span class="award-year">2020 · RM 54,000</span>
-      </div>
-      <div class="award-card reveal">
-        <div class="award-icon">🎓</div>
-        <div class="award-title">Master Research Scheme Fellowship</div>
-        <div class="award-body">Competitive research fellowship funded by the Ministry of Higher Education, Malaysia, supporting full-time graduate research in intelligent systems.</div>
-        <span class="award-year">2021 · RM 21,600</span>
-      </div>
-      <div class="award-card reveal">
-        <div class="award-icon">✅</div>
-        <div class="award-title">PhD Proposal Defended</div>
-        <div class="award-body">Successfully defended doctoral research proposal at the University of Tennessee, Knoxville — advancing to full PhD candidacy in Systems & Controls.</div>
-        <span class="award-year">April 2026 · UTK</span>
-      </div>
-    </div>
-  </div>
-</section>
+</div><!-- /site-wrapper -->
 
-<!-- SKILLS -->
-<section id="skills">
-  <div class="container">
-    <div class="section-label">Technical expertise</div>
-    <h2>Skills & <span>Tools</span></h2>
-    <div class="skills-grid reveal">
-      <div class="skill-group">
-        <h3>Research & Simulation</h3>
-        <div class="skill-tags">
-          <span class="skill-tag primary">CARLA Simulator</span>
-          <span class="skill-tag primary">MATLAB Simulink</span>
-          <span class="skill-tag primary">Unity3D</span>
-          <span class="skill-tag">Reinforcement Learning</span>
-          <span class="skill-tag">Optimal Control</span>
-          <span class="skill-tag">Multi-Agent Systems</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Programming</h3>
-        <div class="skill-tags">
-          <span class="skill-tag primary">Python</span>
-          <span class="skill-tag primary">MATLAB</span>
-          <span class="skill-tag">C++</span>
-          <span class="skill-tag">R</span>
-          <span class="skill-tag">SQL</span>
-          <span class="skill-tag">LaTeX</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>ML / Deep Learning</h3>
-        <div class="skill-tags">
-          <span class="skill-tag primary">TensorFlow</span>
-          <span class="skill-tag primary">Keras</span>
-          <span class="skill-tag">PyTorch</span>
-          <span class="skill-tag">scikit-learn</span>
-          <span class="skill-tag">Pandas / NumPy</span>
-          <span class="skill-tag">OpenCV</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>Statistical & Dev Tools</h3>
-        <div class="skill-tags">
-          <span class="skill-tag primary">GitHub</span>
-          <span class="skill-tag">AWS</span>
-          <span class="skill-tag">SPSS</span>
-          <span class="skill-tag">SAS</span>
-          <span class="skill-tag">Jupyter</span>
-          <span class="skill-tag">Mendeley</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+<!-- ── CONTACT ─────────────────────────────────── -->
+<div style="background: var(--bg); border-top: 1px solid var(--border);">
+<div class="site-wrapper">
+<section id="contact">
+  <p class="section-label">Get in touch</p>
+  <h2 class="section-title">Contact</h2>
 
-<!-- CV DOWNLOAD -->
-<section id="cv" style="padding:60px 40px">
-  <div class="container">
-    <div class="cv-inner">
-      <div class="cv-text">
-        <h2>Download My CV</h2>
-        <p>Full academic curriculum vitae including complete publication list, research experience, teaching history, awards, and references.</p>
-      </div>
-      <a href="Muzahid_Academic_CV.docx" download class="btn-cv">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download CV (PDF)
+  <div class="contact-grid">
+    <div>
+      <p class="contact-lead">
+        I am actively seeking <em>tenure-track faculty positions</em> and <em>research scientist roles</em> beginning Spring 2027.
+      </p>
+      <p class="contact-detail">
+        My research interests span safe learning-based control, hierarchical reinforcement learning, intelligent transportation systems, and human–autonomy interaction. I welcome collaboration inquiries, seminar invitations, and general correspondence.<br><br>
+        <strong>Primary:</strong> <a href="mailto:amuzahid@vols.utk.edu">amuzahid@vols.utk.edu</a><br>
+        <strong>Personal:</strong> <a href="mailto:mrumi98@gmail.com">mrumi98@gmail.com</a><br>
+        <strong>Phone:</strong> +1 (865) 236-5110<br>
+        <strong>Location:</strong> Louisville, TN (Greater Knoxville), USA
+      </p>
+    </div>
+
+    <div class="contact-links-col">
+      <a class="clink" href="https://scholar.google.com/citations?user=76Q5Ev0AAAAJ&hl=en" target="_blank">
+        <span class="clink-label">Scholar</span>
+        <span class="clink-value">886 citations · h-index 14 · i10 20</span>
+        <span class="clink-arrow">↗</span>
+      </a>
+      <a class="clink" href="https://linkedin.com/in/muzahid98" target="_blank">
+        <span class="clink-label">LinkedIn</span>
+        <span class="clink-value">linkedin.com/in/muzahid98</span>
+        <span class="clink-arrow">↗</span>
+      </a>
+      <a class="clink" href="https://www.researchgate.net/profile/Abu-Muzahid" target="_blank">
+        <span class="clink-label">ResearchGate</span>
+        <span class="clink-value">Profile — Abu Muzahid</span>
+        <span class="clink-arrow">↗</span>
+      </a>
+      <a class="clink" href="https://orcid.org/0000-0003-2344-7027" target="_blank">
+        <span class="clink-label">ORCID</span>
+        <span class="clink-value">0000-0003-2344-7027</span>
+        <span class="clink-arrow">↗</span>
+      </a>
+      <a class="clink" href="https://www.scopus.com/authid/detail.uri?authorId=57221741096" target="_blank">
+        <span class="clink-label">Scopus</span>
+        <span class="clink-value">Author ID 57221741096</span>
+        <span class="clink-arrow">↗</span>
+      </a>
+      <a class="clink" href="https://github.com/muzahidabu" target="_blank">
+        <span class="clink-label">GitHub</span>
+        <span class="clink-value">github.com/muzahidabu</span>
+        <span class="clink-arrow">↗</span>
+      </a>
+      <a class="clink" href="C_V__Abu_Jafar_Md_Muzahid_OSU.pdf" download>
+        <span class="clink-label">CV</span>
+        <span class="clink-value">Download Full Academic CV (PDF)</span>
+        <span class="clink-arrow">↓</span>
       </a>
     </div>
   </div>
 </section>
+</div>
+</div>
 
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="section-label">Get in touch</div>
-    <h2>Let's <span>Connect</span></h2>
-    <div class="contact-grid">
-      <div>
-        <p style="color:var(--text-secondary);margin-bottom:24px;line-height:1.8">
-          I am actively seeking <strong>tenure-track faculty positions</strong> and <strong>research scientist roles</strong> beginning Spring 2027, with interests in autonomous systems, intelligent transportation, and AI-driven control. I welcome collaboration inquiries, speaking invitations, and general correspondence.
-        </p>
-        <div class="contact-info">
-          <div class="contact-item">
-            <div class="contact-icon">✉️</div>
-            <div>
-              <div class="contact-label">Primary Email</div>
-              <div class="contact-val">amuzahid@vols.utk.edu</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">📱</div>
-            <div>
-              <div class="contact-label">Phone</div>
-              <div class="contact-val">+1 (865) 236-5110</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">📍</div>
-            <div>
-              <div class="contact-label">Location</div>
-              <div class="contact-val">Knoxville, Tennessee, USA</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">🔗</div>
-            <div>
-              <div class="contact-label">Google Scholar</div>
-              <div class="contact-val"><a href="https://scholar.google.com/citations?user=76Q5Ev0AAAAJ&hl=en" target="_blank">View Publication Record</a></div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-icon">💼</div>
-            <div>
-              <div class="contact-label">LinkedIn</div>
-              <div class="contact-val"><a href="https://linkedin.com/in/muzahid98" target="_blank">linkedin.com/in/muzahid98</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div>
-        <div class="contact-form">
-          <input type="text" placeholder="Your name">
-          <input type="email" placeholder="Your email">
-          <input type="text" placeholder="Subject (e.g., Faculty position inquiry, Collaboration)">
-          <textarea placeholder="Your message..."></textarea>
-          <button type="button">Send Message</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
+<!-- ── FOOTER ──────────────────────────────────── -->
 <footer>
-  <p>© 2025 Abu Jafar Md Muzahid · PhD Candidate, <span>University of Tennessee, Knoxville</span> · Built with UTK pride 🟠</p>
+  <span>Abu Jafar Md Muzahid · PhD Candidate, University of Tennessee, Knoxville</span>
+  <span><a href="https://muzahidabu.github.io">muzahidabu.github.io</a> · © 2026</span>
 </footer>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
-        observer.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(el => observer.observe(el));
+// ── Publication filter & expand ──────────────────
+let pubExpanded = false;
+let activeFilter = 'all';
 
-  // Publications toggle
-  let pubsExpanded = false;
-  function togglePubs() {
-    pubsExpanded = !pubsExpanded;
-    const extraPubs = ['pub5','pub6','pub7','pub8','pub9','pub10'];
-    extraPubs.forEach(id => {
-      document.getElementById(id).style.display = pubsExpanded ? 'flex' : 'none';
-    });
-    document.getElementById('showMoreBtn').textContent = pubsExpanded
-      ? '↑ Show fewer publications'
-      : '↓ Show all 12 journal papers + 8 conference papers';
-  }
+function filterPubs(cat, btn) {
+  activeFilter = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyPubDisplay();
+}
 
-  // Nav active state on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 80) current = s.id;
-    });
-    navLinks.forEach(a => {
-      a.style.color = a.getAttribute('href') === '#' + current
-        ? 'var(--orange)' : 'rgba(255,255,255,0.75)';
-    });
+function togglePubs() {
+  pubExpanded = !pubExpanded;
+  document.getElementById('showAllBtn').textContent = pubExpanded
+    ? '– Show fewer publications'
+    : '+ Show all 17 journal papers & 9 conference papers';
+  applyPubDisplay();
+}
+
+function applyPubDisplay() {
+  const items = document.querySelectorAll('.pub-item');
+  items.forEach(item => {
+    const cats = (item.getAttribute('data-cat') || '').split(' ');
+    const isExtra = item.classList.contains('extra');
+    const matchesFilter = activeFilter === 'all' || cats.includes(activeFilter);
+    if (isExtra) {
+      item.style.display = (pubExpanded && matchesFilter) ? '' : 'none';
+    } else {
+      item.style.display = matchesFilter ? '' : 'none';
+    }
+    // Trigger reveal for newly visible items
+    if (item.style.display !== 'none') {
+      setTimeout(() => item.classList.add('visible'), 50);
+    }
   });
+}
+
+// ── Scroll-reveal ────────────────────────────────
+const revealEls = document.querySelectorAll(
+  '.edu-item, .exp-item, .award-item, .pub-item:not(.extra), .eca-item'
+);
+
+const revealObs = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 60);
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08 });
+
+revealEls.forEach(el => revealObs.observe(el));
+
+// Initial visible pubs
+document.querySelectorAll('.pub-item:not(.extra)').forEach(el => {
+  setTimeout(() => el.classList.add('visible'), 100);
+});
+
+// ── Nav active link ──────────────────────────────
+const secs = document.querySelectorAll('section[id]');
+const navAs = document.querySelectorAll('.nav-links a');
+
+window.addEventListener('scroll', () => {
+  let cur = '';
+  secs.forEach(s => { if (window.scrollY >= s.offsetTop - 70) cur = s.id; });
+  navAs.forEach(a => {
+    const href = a.getAttribute('href').replace('#', '');
+    a.classList.toggle('active', href === cur);
+  });
+}, { passive: true });
 </script>
+
 </body>
 </html>
